@@ -1,0 +1,54 @@
+{
+  "name": "Plane MCP Server - .NET 10 & Node.js",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:10.0-noble",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "latest"
+    }
+  },
+
+  "forwardPorts": [3000, 5000, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    },
+    "5000": {
+      "label": ".NET Server",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "Database",
+      "onAutoForward": "silent"
+    }
+  },
+
+  "containerEnv": {
+    "DOTNET_USE_POLLING_FILE_WATCHER": "true"
+  },
+
+  "postCreateCommand": "apt-get update && apt-get install -y git curl",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-vscode.makefile-tools",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "omnisharp.enableEditorConfigSupport": true,
+        "omnisharp.enableRoslynAnalyzers": true
+      }
+    }
+  },
+
+  "remoteUser": "vscode",
+  "mounts": [],
+  "runArgs": []
+}

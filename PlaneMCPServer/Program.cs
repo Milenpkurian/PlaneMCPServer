@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -23,3 +24,22 @@ if(string.IsNullOrEmpty(workspaceId))
     throw new InvalidOperationException("WorkspaceId is missing from config.");
 if(string.IsNullOrEmpty(projectId))
     throw new InvalidOperationException("ProjectId is missing from config.");
+
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton(sp =>
+{
+    var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
+    return new PlaneApiService(
+        httpClientFactory,
+        baseUrl,
+        planeApiKey,
+        workspaceId,
+        projectId);
+});
+
+builder.Services
+.AddMcpServer()
+.WithStdioServerTransport()
+.WithToolsFromAssembly();
+
+await builder.Build().RunAsync();

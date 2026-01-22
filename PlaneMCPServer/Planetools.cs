@@ -16,7 +16,7 @@ public class Planetools
     public static async Task<string> CreateWorkItem(
         PlaneApiService planeApiService,
         [Description("The name of the work item to create.Make it brief")] string name,
-        [Description("The description of the work item to create, in HTML format.Should include acceptence criteria")] string description,
+        [Description("The description of the work item to create, in markdown format.Should include acceptence criteria")] string description,
         [Description("The state or status id of the work item, derived from the GettAllWorkItemStatuses tool.")] string stateId)
     {
         var workItem = await planeApiService.CreateWorkItemAsync(name, description, stateId);

@@ -8,7 +8,7 @@
     }
   },
 
-  "forwardPorts": [3000, 5000, 5432],
+  "forwardPorts": [3000, 5000, 5432, 6274, 6277],
   "portsAttributes": {
     "3000": {
       "label": "Application",
@@ -21,6 +21,16 @@
     "5432": {
       "label": "Database",
       "onAutoForward": "silent"
+    },
+    "6274": {
+      "label": "MCP Inspector UI",
+      "onAutoForward": "openBrowser",
+      "elevateIfNeeded": true
+    },
+    "6277": {
+      "label": "MCP Proxy Server",
+      "onAutoForward": "notify",
+      "elevateIfNeeded": true
     }
   },
 

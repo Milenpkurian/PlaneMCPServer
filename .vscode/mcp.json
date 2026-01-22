@@ -1,0 +1,14 @@
+{
+	"servers": {
+		"PlaneMCP": {
+			"type": "stdio",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"/run/media/m/New Volume/Development/PlaneMCPServer/PlaneMCPServer/"
+			]
+		}
+	},
+	"inputs": []
+}
